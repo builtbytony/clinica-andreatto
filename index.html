@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://www.clinicaandreatto.com.br/assets/images/og-image.jpg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/logo/favicon.png">
-<link rel="preload" as="image" href="assets/logo/logo-andreatto.png">
+<link rel="preload" as="image" href="assets/images/dra-valeria.webp" fetchpriority="high">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -204,7 +204,7 @@ section{position:relative}
 footer .logo img{height:80px}
 
 /* hero video */
-.hero-video{width:100%;height:100%;object-fit:cover;display:block}
+.hero-img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
 .about-img img{width:100%;height:100%;object-fit:cover}
 
 /* treatment video button */
@@ -451,9 +451,7 @@ footer a:hover{color:var(--ivory)}
     <div class="hero-visual reveal d2">
       <div class="arch-frame" aria-hidden="true"></div>
       <div class="arch">
-        <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/video/hero-loop.jpg" aria-label="Dra. Valéria Andreatto em atendimento na clínica">
-          <source src="assets/video/hero-loop.mp4" type="video/mp4">
-        </video>
+        <img class="hero-img" src="assets/images/dra-valeria.webp" alt="Dra. Valéria Andreatto, fundadora da Clínica Andreatto" width="1000" height="1333" fetchpriority="high">
       </div>
       <div class="badge">
         <small>Atendimento</small>
@@ -1064,10 +1062,6 @@ footer a:hover{color:var(--ivory)}
       track.scrollBy({left: step * Number(b.getAttribute('data-dir')), behavior: 'smooth'});
     });
   });
-
-  // hero video respects reduced motion
-  var hv = document.querySelector('.hero-video');
-  if (hv && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { hv.removeAttribute('autoplay'); hv.pause(); }
 
   // hide expired offers
   var now = Date.now();
