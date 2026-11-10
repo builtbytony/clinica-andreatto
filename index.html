@@ -36,7 +36,7 @@
   "url": "https://www.clinicaandreatto.com.br/",
   "telephone": "+55-68-99979-0913",
   "image": "https://www.clinicaandreatto.com.br/assets/images/og-image.jpg",
-  "logo": "https://www.clinicaandreatto.com.br/assets/logo/logo-andreatto.png",
+  "logo": "https://www.clinicaandreatto.com.br/assets/logo/logo-andreatto-light.png",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Rio Branco",
@@ -101,7 +101,7 @@ p{margin:0}
 .nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .4s var(--ease),box-shadow .4s var(--ease),padding .4s var(--ease);padding:22px 0}
 .nav.scrolled{background:rgba(23,17,15,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line);padding:12px 0}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px}
-.logo{display:flex;flex-direction:column;line-height:1}
+.logo{display:flex;flex-direction:column;align-items:flex-start;line-height:1}
 .logo b{font-family:var(--serif);font-weight:500;font-size:25px;letter-spacing:.14em;text-transform:uppercase}
 .logo span{font-size:9.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-top:6px}
 .nav ul{display:flex;gap:28px;white-space:nowrap;list-style:none;margin:0;padding:0}
@@ -202,9 +202,9 @@ section{position:relative}
 [data-expires].expired{display:none!important}
 
 /* logo image */
-.logo img{height:58px;width:auto;transition:height .4s var(--ease)}
+.logo img{height:58px;width:auto;max-width:none;flex:none;object-fit:contain;aspect-ratio:600/237;transition:height .4s var(--ease)}
 .nav.scrolled .logo img{height:46px}
-footer .logo img{height:80px}
+footer .logo{display:inline-block}footer .logo img{height:auto;width:min(100%,280px);max-width:100%}
 
 /* hero video */
 .hero-img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
@@ -225,6 +225,11 @@ footer .logo img{height:80px}
 .r-btn svg{width:20px;height:20px}
 .r-track{--rpad:max(22px,calc((100% - var(--wrap))/2 + 28px));display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px var(--rpad) 20px;scroll-padding-inline:var(--rpad);scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .r-track::-webkit-scrollbar{display:none}
+.r-track{cursor:grab;user-select:none;-webkit-user-select:none;overscroll-behavior-x:contain;touch-action:pan-x pan-y}
+.r-track.dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
+.r-track.dragging .reel{pointer-events:none}
+.reel video,.reel img{-webkit-user-drag:none;user-drag:none}
+.r-btn[disabled]{opacity:.3;cursor:default;pointer-events:none}
 .reel{flex:0 0 clamp(220px,22vw,290px);aspect-ratio:9/16;position:relative;overflow:hidden;scroll-snap-align:start;border:0;padding:0;cursor:pointer;background:var(--blush);color:#fff;text-align:left}
 .reel video{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
 .reel:hover video{transform:scale(1.04)}
@@ -330,7 +335,7 @@ footer li{margin-bottom:10px}
 footer a:hover{color:var(--gold-soft)}
 .f-tag{margin-top:22px;max-width:30ch}
 .disclaimer{font-size:12.5px;line-height:1.7;color:rgba(247,241,236,.48);margin-top:36px;max-width:90ch}
-.f-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:22px;font-size:12.5px;color:rgba(247,241,236,.48)}
+.f-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:22px;padding-right:80px;font-size:12.5px;color:rgba(247,241,236,.48)}
 
 /* whatsapp float + mobile bar */
 .wa-float{position:fixed;right:26px;bottom:26px;z-index:40;width:58px;height:58px;border-radius:50%;background:var(--gold-grad);color:#17110F;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 34px -10px rgba(0,0,0,.5);transition:transform .35s var(--ease),background .35s}
@@ -407,7 +412,7 @@ footer a:hover{color:var(--gold-soft)}
 <header class="nav" id="nav">
   <div class="wrap">
     <a href="#top" class="logo" aria-label="Clínica Andreatto, início">
-      <img src="assets/logo/logo-andreatto.png" alt="Clínica Andreatto, Acupuntura e Estética" width="600" height="238">
+      <img src="assets/logo/logo-andreatto-light.png" alt="Clínica Andreatto, Acupuntura e Estética" width="600" height="237">
     </a>
     <nav aria-label="Principal">
       <ul>
@@ -886,7 +891,7 @@ footer a:hover{color:var(--gold-soft)}
   <div class="wrap">
     <div class="f-grid">
       <div>
-        <a href="#top" class="logo"><img src="assets/logo/logo-andreatto.png" alt="Clínica Andreatto, Acupuntura e Estética" width="600" height="238" loading="lazy"></a>
+        <a href="#top" class="logo"><img src="assets/logo/logo-andreatto-light.png" alt="Clínica Andreatto, Acupuntura e Estética" width="600" height="237" loading="lazy"></a>
         <p class="f-tag">Transformando autoestima e bem-estar. Facial, corporal e capilar em Rio Branco, AC.</p>
       </div>
       <div>
@@ -1063,6 +1068,52 @@ footer a:hover{color:var(--gold-soft)}
     r.addEventListener('mouseleave', function(){ v.pause(); r.classList.remove('playing'); });
   });
   var track = document.getElementById('rTrack');
+
+  // drag / swipe with mouse (touch swipes natively)
+  var down = false, moved = false, startX = 0, startLeft = 0, lastX = 0, lastT = 0, vel = 0;
+  track.addEventListener('pointerdown', function(e){
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    down = true; moved = false; startX = lastX = e.clientX; startLeft = track.scrollLeft; lastT = performance.now(); vel = 0;
+  });
+  window.addEventListener('pointermove', function(e){
+    if (!down) return;
+    var dx = e.clientX - startX;
+    if (!moved && Math.abs(dx) > 6) { moved = true; track.classList.add('dragging'); }
+    if (moved) {
+      e.preventDefault();
+      track.scrollLeft = startLeft - dx;
+      var now = performance.now(); vel = (e.clientX - lastX) / Math.max(1, now - lastT); lastX = e.clientX; lastT = now;
+    }
+  });
+  window.addEventListener('pointerup', function(){
+    if (!down) return; down = false;
+    if (!moved) return;
+    // small momentum, then let scroll-snap settle on the nearest reel
+    var target = track.scrollLeft - vel * 260;
+    track.classList.remove('dragging');
+    track.scrollTo({left: target, behavior: 'smooth'});
+  });
+  // a drag must not open the video
+  track.addEventListener('click', function(e){ if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; } }, true);
+  track.addEventListener('dragstart', function(e){ e.preventDefault(); });
+
+  // keyboard arrows when the track has focus
+  track.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      var step = track.querySelector('.reel').getBoundingClientRect().width + 20;
+      track.scrollBy({left: e.key === 'ArrowRight' ? step : -step, behavior: 'smooth'});
+    }
+  });
+
+  // disable arrows at the ends
+  var rBtns = document.querySelectorAll('.r-btn');
+  function updBtns(){
+    var max = track.scrollWidth - track.clientWidth - 4;
+    rBtns[0].disabled = track.scrollLeft <= 4;
+    rBtns[1].disabled = track.scrollLeft >= max;
+  }
+  track.addEventListener('scroll', updBtns, {passive:true}); window.addEventListener('resize', updBtns); updBtns();
   document.querySelectorAll('.r-btn').forEach(function(b){
     b.addEventListener('click', function(){
       var step = track.querySelector('.reel').getBoundingClientRect().width + 20;
