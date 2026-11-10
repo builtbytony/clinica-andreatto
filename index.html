@@ -68,6 +68,7 @@
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html,body{overflow-x:clip}
 body{margin:0;background:var(--ivory);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
@@ -121,6 +122,7 @@ p{margin:0}
 /* hero */
 .hero{min-height:100vh;min-height:100svh;display:grid;align-items:center;padding:130px 0 70px;position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;right:-12vw;top:-10vw;width:62vw;height:62vw;border-radius:50%;background:radial-gradient(circle,rgba(201,164,106,.16) 0%,rgba(201,164,106,0) 66%);z-index:0}
+.hero>.wrap{width:100%}
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:center;position:relative;z-index:1}
 .hero h1{margin:26px 0 30px}
 .hero .lead{margin-bottom:42px}
@@ -353,11 +355,45 @@ footer a:hover{color:var(--gold-soft)}
   *{transition-duration:.01ms!important}
 }
 
+
+/* ---------- motion ---------- */
+@keyframes heroZoom{from{transform:scale(1.14)}to{transform:scale(1)}}
+@keyframes breathe{from{transform:scale(1)}to{transform:scale(1.045)}}
+@keyframes shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+@keyframes sheen{0%{left:-60%}22%,100%{left:130%}}
+@keyframes frameIn{from{opacity:0;transform:translate(14px,-14px)}to{opacity:1;transform:none}}
+@keyframes badgeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes lineGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.hero-img{animation:heroZoom 2.2s var(--ease) both}
+.arch.settled .hero-img{animation:breathe 12s ease-in-out infinite alternate}
+.arch-frame{animation:frameIn 1.4s .5s var(--ease) both}
+.badge{animation:badgeIn 1s .9s var(--ease) both}
+h1 em,h2 em{background-size:200% 100%;background-image:linear-gradient(100deg,#B98E50 0%,#E6CFA0 25%,#B98E50 50%,#E6CFA0 75%,#B98E50 100%);animation:shimmer 7s linear infinite}
+.eyebrow::before{transform-origin:left;animation:lineGrow 1.2s .3s var(--ease) both}
+.btn-dark{position:relative;overflow:hidden}
+.btn-dark::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);animation:sheen 5s ease-in-out 1.5s infinite;pointer-events:none}
+.wa-float{animation:floatY 3.5s ease-in-out infinite}
+.reveal.clip{opacity:1;transform:none;clip-path:inset(14% 0 14% 0);transition:clip-path 1.3s var(--ease)}
+.reveal.clip.in{clip-path:inset(0 0 0 0)}
+.reveal.clip img{transform:scale(1.12);transition:transform 1.6s var(--ease)}
+.reveal.clip.in img{transform:scale(1)}
+.price{font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){
+  .hero-img,.arch-frame,.badge,h1 em,h2 em,.eyebrow::before,.btn-dark::after,.m-bar .mb-main::after,.wa-float,.arch.settled .hero-img{animation:none!important}
+  .reveal.clip{clip-path:none}.reveal.clip img{transform:none}
+}
+
 /* responsive */
 @media (max-width:1180px){
   .nav ul{display:none}
   .burger{display:block}
   .nav .btn{margin-left:auto}
+}
+@media (max-width:860px){
+  .nav .btn{display:none} /* sticky booking bar takes over */
+  .nav{padding:14px 0}
+  .nav.scrolled{padding:10px 0}
 }
 @media (max-width:1080px){
   .t-grid,.p-grid{grid-template-columns:repeat(2,1fr)}
@@ -380,16 +416,40 @@ footer a:hover{color:var(--gold-soft)}
   .m-item{margin-bottom:14px}
   .logo img{height:46px}
   .nav.scrolled .logo img{height:40px}
-  .wa-float{display:none}
-  .m-bar{display:grid;grid-template-columns:1fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--ivory);border-top:1px solid var(--line);box-shadow:0 -10px 30px -12px rgba(0,0,0,.2);padding:10px 12px calc(10px + env(safe-area-inset-bottom));gap:10px;transform:translateY(110%);transition:transform .45s var(--ease)}
+  /* ---- mobile booking-first hero ---- */
+  .hero{padding:68px 0 40px;min-height:auto}
+  .hero::before{display:none}
+  .hero-grid{display:flex;flex-direction:column;gap:0}
+  .hero-visual{order:-1;max-width:none;width:auto;margin:0 calc(50% - 50vw);padding:0;align-self:stretch}
+  .hero-grid>div:first-child{align-self:stretch;width:100%;margin:0}
+  .badge{left:max(22px,calc(50vw - 50% + 22px))}
+  .arch{aspect-ratio:auto;height:min(56svh,520px)}
+  .arch::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,17,15,0) 45%,rgba(23,17,15,.55) 75%,var(--ivory) 100%);pointer-events:none}
+  .arch-frame{display:none}
+  .badge{left:22px;right:auto;bottom:22px;padding:12px 16px;max-width:none;background:rgba(23,17,15,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:2}
+  .badge p{font-size:19px}
+  .hero .eyebrow{margin-top:-6px}
+  .hero h1{margin:14px 0 16px;font-size:clamp(42px,12vw,56px)}
+  .hero .lead{margin-bottom:26px;font-size:16px}
+  .hero-ctas .btn{display:none} /* the sticky booking bar carries the CTAs on mobile */
+  .hero-meta{margin-top:30px;gap:10px}
+  .hero-meta div{flex:1;border:1px solid var(--line);padding:12px 10px;text-align:center;font-size:10px;letter-spacing:.18em}
+  .hero-meta b{font-size:22px}
+  /* sticky booking bar */
+  .m-bar{display:grid;grid-template-columns:52px 52px 1fr;position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(16,11,10,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(201,164,106,.25);padding:10px 12px calc(10px + env(safe-area-inset-bottom));gap:8px;transform:translateY(110%);transition:transform .45s var(--ease)}
   .m-bar.show{transform:none}
-  .m-bar a{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 10px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;border:1px solid var(--ink)}
-  .m-bar a:first-child{background:var(--gold-grad);color:#17110F;border-color:transparent}
-  .m-bar svg{width:16px;height:16px}
+  .m-bar a{display:flex;align-items:center;justify-content:center;gap:10px;height:52px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
+  .m-bar .mb-icon{border:1px solid rgba(201,164,106,.5);color:var(--gold-soft)}
+  .m-bar .mb-icon svg{width:22px;height:22px}
+  .m-bar .mb-main{background:var(--gold-grad);background-size:200% 100%;color:#17110F;position:relative;overflow:hidden}
+  .m-bar .mb-main svg{width:16px;height:16px}
+  .m-bar .mb-main::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);animation:sheen 4.5s ease-in-out 2s infinite}
+  .wa-float{display:none}
   footer{padding-bottom:110px}
 }
 @media (max-width:600px){
   .nav .btn{display:none}
+  .wrap{padding:0 22px}
   .t-grid,.p-grid,.steps,.pillars,.f-grid{grid-template-columns:1fr}
   .reel{flex-basis:68vw}
   .step+.step{border-left:0;padding-left:0;border-top:1px solid rgba(247,241,236,.16)}
@@ -397,7 +457,6 @@ footer a:hover{color:var(--gold-soft)}
   .contact-list li{grid-template-columns:1fr;gap:4px}
   .hero-meta{gap:28px}
   .btn{padding:16px 24px}
-  .hero-ctas .btn{width:100%;justify-content:center}
 }
 
 .field select option{background:#1E1714;color:#F3EBE2}
@@ -448,11 +507,12 @@ footer a:hover{color:var(--gold-soft)}
       <span class="eyebrow reveal">Rio Branco, Acre</span>
       <h1 class="reveal d1">A arte da<br><em>beleza natural</em></h1>
       <p class="lead reveal d2">Estética avançada facial, corporal e capilar, com avaliação individual conduzida pela Dra. Valéria Andreatto.</p>
-      <div class="hero-ctas reveal d3">
+      <div class="hero-ctas reveal d3" id="heroCtas">
         <a href="#agendar" class="btn btn-dark">Agendar avaliação
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a href="#tratamentos" class="link-arrow">Conheça os tratamentos</a>
+        <a href="#" class="btn btn-line js-wa hero-wa" data-msg="Olá Dra. Valéria! Gostaria de agendar uma avaliação."><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.24 8.24 0 0 1 8.24 8.25c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.25-.64.8-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>WhatsApp</a>
+        <a href="#tratamentos" class="link-arrow hero-more">Conheça os tratamentos</a>
       </div>
       <div class="hero-meta reveal d3">
         <div><b>Facial</b>Harmonia</div>
@@ -476,7 +536,7 @@ footer a:hover{color:var(--gold-soft)}
 <!-- 2. About -->
 <section class="about sec" id="sobre">
   <div class="wrap about-grid">
-    <div class="about-img reveal">
+    <div class="about-img reveal clip">
       <img src="assets/images/clinica-ambiente.webp" alt="Dra. Valéria Andreatto conversando com uma paciente durante a avaliação na Clínica Andreatto" width="900" height="1600" loading="lazy">
     </div>
     <div>
@@ -755,7 +815,7 @@ footer a:hover{color:var(--gold-soft)}
       </ul>
       <a href="#" class="btn btn-dark reveal d3 js-wa" data-msg="Olá Dra. Valéria! Quero transformar minha autoestima com você.">Falar com a Dra. Valéria</a>
     </div>
-    <div class="doc-photo reveal d1">
+    <div class="doc-photo reveal clip d1">
       <img src="assets/images/dra-valeria.webp" alt="Retrato da Dra. Valéria Andreatto, fundadora da Clínica Andreatto" width="1000" height="1333" loading="lazy">
     </div>
   </div>
@@ -933,9 +993,10 @@ footer a:hover{color:var(--gold-soft)}
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.24 8.24 0 0 1 8.24 8.25c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.25-.64.8-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
 </a>
 
-<div class="m-bar" id="mBar">
-  <a href="#agendar">Agendar</a>
-  <a href="#" class="js-wa"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2z"/></svg>WhatsApp</a>
+<div class="m-bar" id="mBar" aria-label="Agendamento rápido">
+  <a href="tel:+5568999790913" class="mb-icon" aria-label="Ligar para a clínica"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
+  <a href="#" class="js-wa mb-icon" aria-label="Falar pelo WhatsApp" data-msg="Olá Dra. Valéria! Gostaria de agendar uma avaliação."><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.24 8.24 0 0 1 8.24 8.25c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.25-.64.8-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg></a>
+  <a href="#agendar" class="mb-main">Agendar avaliação<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 </div>
 
 <script>
@@ -954,9 +1015,39 @@ footer a:hover{color:var(--gold-soft)}
   function onScroll(){
     var y = window.scrollY;
     nav.classList.toggle('scrolled', y > 40);
-    bar.classList.toggle('show', y > window.innerHeight * 0.6);
   }
   window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+
+  // mobile booking bar: always available, hidden while the booking form is on screen
+  var bookSec = document.getElementById('agendar');
+  var bookVisible = false;
+  function updBar(){ bar.classList.toggle('show', !bookVisible); }
+  updBar();
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(en){ bookVisible = en[0].isIntersecting; updBar(); }, {threshold:.25}).observe(bookSec);
+  } else { bar.classList.add('show'); }
+
+  // hero image: settle into a slow breathing loop after the intro zoom
+  var arch = document.querySelector('.arch');
+  if (arch) setTimeout(function(){ arch.classList.add('settled'); }, 2300);
+
+  // price count-up
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var prices = document.querySelectorAll('.price');
+  if (!reduce && 'IntersectionObserver' in window) {
+    var pio = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return; pio.unobserve(en.target);
+        var node = en.target.lastChild, txt = node.textContent.trim(), target = parseInt(txt.replace(/\./g,''),10), t0 = null;
+        function fmt(n){ return n.toLocaleString('pt-BR'); }
+        function step(t){ if(!t0) t0 = t; var k = Math.min(1,(t-t0)/1200), e = 1-Math.pow(1-k,3);
+          node.textContent = fmt(Math.round(target*e)); if (k<1) requestAnimationFrame(step); }
+        requestAnimationFrame(step);
+      });
+    }, {threshold:.6});
+    prices.forEach(function(p){ pio.observe(p); });
+  }
 
   // mobile menu
   var burger = document.getElementById('burger'), menu = document.getElementById('mobileMenu');
