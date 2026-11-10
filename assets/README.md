@@ -1,24 +1,20 @@
 # Assets
 
-Drop files here using these names so they can be wired into `index.html`.
+Optimized files used by `index.html`. Originals uploaded from Instagram are kept in `_originals/` (not loaded by the site).
 
-## assets/logo/
-- `logo.svg` (or `logo.png`, transparent background)
-- `favicon.png` (512x512)
+## logo/
+- `logo-andreatto.png` transparent logo (nav, footer)
+- `favicon.png`, `favicon-32.png`
 
-## assets/images/
-| File | Used in | Size (min) |
-|---|---|---|
-| `hero.jpg` | Hero arch | 900x1200, portrait |
-| `dra-valeria.jpg` | Doctor section | 900x1125, portrait |
-| `clinica-ambiente.jpg` | About section | 900x1125, portrait |
-| `botox.jpg`, `labios.jpg`, `rinomodelacao.jpg`, `olheiras.jpg`, `fios-pdo.jpg`, `limpeza-de-pele.jpg`, `bioestimulador.jpg`, `corporal.jpg`, `capilar.jpg` | Treatment cards | 1000x800, landscape |
-| `galeria-1.jpg` ... `galeria-5.jpg` | Gallery | 1200px wide |
-| `og-image.jpg` | Social share preview | 1200x630 |
+## images/
+- `dra-valeria.webp` doctor portrait
+- `clinica-ambiente.webp` about section (frame from the clinic film)
+- `resultado-*.webp` before/after gallery and treatment cards
+- `og-image.jpg` social share preview (1200x630)
 
-Patient photos only with written authorization.
+## video/
+- `hero-loop.mp4` 10s muted hero loop
+- `clinica-andreatto.mp4`, `botox-fim-de-ano.mp4`, `botox-aplicacao.mp4`, `saude-capilar.mp4`, `procedimento-corporal.mp4`, `atendemos-no-feriado.mp4` reels carousel (540x960, H.264)
+- `*.jpg` poster frames
 
-## assets/video/
-- `hero.mp4` (optional, short, muted loop, under 5 MB)
-
-Use JPG or WebP, compressed (under 300 KB per image where possible).
+To add a new reel: upload it to `_originals/video/`, then ask for it to be compressed and added to the carousel.

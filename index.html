@@ -12,7 +12,10 @@
 <meta property="og:title" content="Clínica Andreatto | Estética Avançada em Rio Branco">
 <meta property="og:description" content="Estética facial, corporal e capilar com avaliação individual. Agende pelo WhatsApp.">
 <meta property="og:url" content="https://www.clinicaandreatto.com.br/">
-<!-- og:image: substituir pela foto oficial da clínica (1200x630) -->
+<meta property="og:image" content="https://www.clinicaandreatto.com.br/assets/images/og-image.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/logo/favicon.png">
+<link rel="preload" as="image" href="assets/logo/logo-andreatto.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,6 +35,8 @@
   "description": "Estética avançada facial, corporal e capilar em Rio Branco, Acre.",
   "url": "https://www.clinicaandreatto.com.br/",
   "telephone": "+55-68-99979-0913",
+  "image": "https://www.clinicaandreatto.com.br/assets/images/og-image.jpg",
+  "logo": "https://www.clinicaandreatto.com.br/assets/logo/logo-andreatto.png",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Rio Branco",
@@ -72,7 +77,7 @@ a{color:inherit;text-decoration:none}
 .eyebrow{font-family:var(--sans);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:500;display:inline-flex;align-items:center;gap:14px}
 .eyebrow::before{content:"";width:34px;height:1px;background:var(--gold)}
 h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.08;margin:0;letter-spacing:-.01em}
-h1{font-size:clamp(46px,7.4vw,104px)}
+h1{font-size:clamp(44px,6.6vw,96px)}
 h2{font-size:clamp(36px,4.8vw,64px)}
 h3{font-size:clamp(24px,2.2vw,30px)}
 h1 em,h2 em{font-style:italic;color:var(--gold)}
@@ -96,11 +101,11 @@ p{margin:0}
 .logo{display:flex;flex-direction:column;line-height:1}
 .logo b{font-family:var(--serif);font-weight:500;font-size:25px;letter-spacing:.14em;text-transform:uppercase}
 .logo span{font-size:9.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-top:6px}
-.nav ul{display:flex;gap:34px;list-style:none;margin:0;padding:0}
-.nav ul a{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:400;position:relative}
+.nav ul{display:flex;gap:28px;white-space:nowrap;list-style:none;margin:0;padding:0}
+.nav ul a{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:400;position:relative}
 .nav ul a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--gold);transition:width .35s var(--ease)}
 .nav ul a:hover::after{width:100%}
-.nav .btn{padding:12px 22px;font-size:12px}
+.nav .btn{padding:12px 22px;font-size:12px;white-space:nowrap}
 .burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;position:relative}
 .burger span{position:absolute;left:10px;right:10px;height:1px;background:var(--ink);transition:transform .35s var(--ease),opacity .2s}
 .burger span:nth-child(1){top:17px}.burger span:nth-child(2){top:26px}
@@ -192,6 +197,59 @@ section{position:relative}
 .offer-foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:34px;font-size:14px;color:var(--muted)}
 .offer-foot b{color:var(--ink);font-weight:500}
 [data-expires].expired{display:none!important}
+
+/* logo image */
+.logo img{height:58px;width:auto;transition:height .4s var(--ease)}
+.nav.scrolled .logo img{height:46px}
+footer .logo img{height:80px}
+
+/* hero video */
+.hero-video{width:100%;height:100%;object-fit:cover;display:block}
+.about-img img{width:100%;height:100%;object-fit:cover}
+
+/* treatment video button */
+.t-media{position:relative}
+.t-play{position:absolute;left:16px;bottom:16px;display:inline-flex;align-items:center;gap:8px;background:rgba(251,248,245,.92);border:0;padding:9px 14px 9px 10px;font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);cursor:pointer;transition:background .3s,color .3s}
+.t-play svg{width:16px;height:16px}
+.t-play:hover{background:var(--ink);color:var(--ivory)}
+
+/* reels */
+.reels{padding-bottom:clamp(70px,8vw,110px)}
+.reels-head-r{display:flex;flex-direction:column;gap:26px}
+.r-nav{display:flex;gap:10px}
+.r-btn{width:50px;height:50px;border:1px solid var(--ink);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .3s,color .3s;color:var(--ink)}
+.r-btn:hover{background:var(--ink);color:var(--ivory)}
+.r-btn svg{width:20px;height:20px}
+.r-track{--rpad:max(22px,calc((100% - var(--wrap))/2 + 28px));display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px var(--rpad) 20px;scroll-padding-inline:var(--rpad);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.r-track::-webkit-scrollbar{display:none}
+.reel{flex:0 0 clamp(220px,22vw,290px);aspect-ratio:9/16;position:relative;overflow:hidden;scroll-snap-align:start;border:0;padding:0;cursor:pointer;background:#D9C2B6;color:#fff;text-align:left}
+.reel video{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.reel:hover video{transform:scale(1.04)}
+.reel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(43,34,32,0) 55%,rgba(43,34,32,.72) 100%);pointer-events:none}
+.r-tag{position:absolute;top:14px;left:14px;z-index:1;background:rgba(251,248,245,.92);color:var(--ink);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;padding:6px 11px;font-family:var(--sans)}
+.r-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;width:58px;height:58px;border-radius:50%;border:1px solid rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;transition:opacity .4s,transform .4s var(--ease);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.r-play svg{width:22px;height:22px;margin-left:3px}
+.reel.playing .r-play{opacity:0;transform:translate(-50%,-50%) scale(.85)}
+.r-cap{position:absolute;left:16px;right:16px;bottom:16px;z-index:1;font-family:var(--serif);font-size:21px;line-height:1.2}
+.r-foot{margin-top:28px}
+
+/* masonry results */
+.masonry{column-count:3;column-gap:20px}
+.m-item{break-inside:avoid;margin:0 0 20px;position:relative}
+.zoom{display:block;width:100%;border:0;padding:0;background:#E7D5CC;cursor:zoom-in;overflow:hidden}
+.zoom img{width:100%;height:auto;transition:transform 1.2s var(--ease)}
+.zoom:hover img{transform:scale(1.03)}
+.m-item figcaption{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:80;background:rgba(30,23,22,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px 30px;gap:22px}
+.lb[hidden]{display:none}
+.lb-body{max-width:min(92vw,1000px);max-height:calc(100vh - 170px);display:flex;justify-content:center}
+.lb-body img{max-height:calc(100vh - 170px);width:auto;max-width:100%;object-fit:contain}
+.lb-body video{max-height:calc(100vh - 170px);max-width:100%;aspect-ratio:auto;background:#000}
+.lb-close{position:absolute;top:18px;right:18px;width:48px;height:48px;border:1px solid rgba(247,241,236,.4);background:transparent;color:var(--ivory);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-close svg{width:22px;height:22px}
+.lb-cta{border-color:var(--gold-soft)}
 
 /* approach */
 .approach{background:var(--ink);color:var(--ivory)}
@@ -288,10 +346,12 @@ footer a:hover{color:var(--ivory)}
 }
 
 /* responsive */
-@media (max-width:1080px){
+@media (max-width:1180px){
   .nav ul{display:none}
   .burger{display:block}
-  .nav .btn{display:none}
+  .nav .btn{margin-left:auto}
+}
+@media (max-width:1080px){
   .t-grid,.p-grid{grid-template-columns:repeat(2,1fr)}
   .steps{grid-template-columns:repeat(2,1fr)}
   .step:nth-child(3){border-left:0;padding-left:0}
@@ -308,8 +368,10 @@ footer a:hover{color:var(--ivory)}
   .badge{left:0;bottom:30px}
   .sec-head{gap:24px}
   .doc-photo{order:-1;max-width:440px}
-  .g-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px}
-  .g-item.wide{grid-column:span 2}
+  .masonry{column-count:2;column-gap:14px}
+  .m-item{margin-bottom:14px}
+  .logo img{height:46px}
+  .nav.scrolled .logo img{height:40px}
   .wa-float{display:none}
   .m-bar{display:grid;grid-template-columns:1fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--ivory);border-top:1px solid var(--line);box-shadow:0 -10px 30px -12px rgba(43,34,32,.2);padding:10px 12px calc(10px + env(safe-area-inset-bottom));gap:10px;transform:translateY(110%);transition:transform .45s var(--ease)}
   .m-bar.show{transform:none}
@@ -319,7 +381,9 @@ footer a:hover{color:var(--ivory)}
   footer{padding-bottom:110px}
 }
 @media (max-width:600px){
+  .nav .btn{display:none}
   .t-grid,.p-grid,.steps,.pillars,.f-grid{grid-template-columns:1fr}
+  .reel{flex-basis:68vw}
   .step+.step{border-left:0;padding-left:0;border-top:1px solid rgba(247,241,236,.16)}
   .pillars div{padding-right:0;border-bottom:1px solid var(--line);padding-bottom:20px}
   .contact-list li{grid-template-columns:1fr;gap:4px}
@@ -336,16 +400,15 @@ footer a:hover{color:var(--ivory)}
 <header class="nav" id="nav">
   <div class="wrap">
     <a href="#top" class="logo" aria-label="Clínica Andreatto, início">
-      <b>Andreatto</b>
-      <span>Estética Avançada</span>
+      <img src="assets/logo/logo-andreatto.png" alt="Clínica Andreatto, Acupuntura e Estética" width="600" height="238">
     </a>
     <nav aria-label="Principal">
       <ul>
         <li><a href="#sobre">A Clínica</a></li>
         <li><a href="#tratamentos">Tratamentos</a></li>
         <li data-expires="2026-12-05T23:59:59-05:00"><a href="#condicoes">Black</a></li>
-        <li><a href="#abordagem">Abordagem</a></li>
         <li><a href="#dra-valeria">Dra. Valéria</a></li>
+        <li><a href="#resultados">Resultados</a></li>
         <li><a href="#duvidas">Dúvidas</a></li>
       </ul>
     </nav>
@@ -359,6 +422,7 @@ footer a:hover{color:var(--ivory)}
   <a href="#condicoes" data-expires="2026-12-05T23:59:59-05:00">Black da Estética</a>
   <a href="#abordagem">Abordagem</a>
   <a href="#dra-valeria">Dra. Valéria</a>
+  <a href="#resultados">Resultados</a>
   <a href="#duvidas">Dúvidas</a>
   <a href="#agendar" class="btn btn-dark" style="font-family:var(--sans);font-size:13px;align-self:flex-start;margin-top:14px">Agendar avaliação</a>
 </div>
@@ -370,7 +434,7 @@ footer a:hover{color:var(--ivory)}
   <div class="wrap hero-grid">
     <div>
       <span class="eyebrow reveal">Rio Branco, Acre</span>
-      <h1 class="reveal d1">A sua beleza,<br>com <em>naturalidade</em> e cuidado.</h1>
+      <h1 class="reveal d1">A sua beleza, com <em>naturalidade</em> e cuidado.</h1>
       <p class="lead reveal d2">Estética avançada facial, corporal e capilar, planejada a partir de uma avaliação individual. Cada protocolo começa por ouvir você.</p>
       <div class="hero-ctas reveal d3">
         <a href="#agendar" class="btn btn-dark">Agendar avaliação
@@ -387,8 +451,9 @@ footer a:hover{color:var(--ivory)}
     <div class="hero-visual reveal d2">
       <div class="arch-frame" aria-hidden="true"></div>
       <div class="arch">
-        <!-- SUBSTITUIR: foto principal da clínica ou da Dra. Valéria (retrato vertical, mín. 900x1200) -->
-        <div class="ph" role="img" aria-label="Espaço reservado para a foto principal da Clínica Andreatto"><span class="mono">A</span><small>Foto principal</small></div>
+        <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/video/hero-loop.jpg" aria-label="Dra. Valéria Andreatto em atendimento na clínica">
+          <source src="assets/video/hero-loop.mp4" type="video/mp4">
+        </video>
       </div>
       <div class="badge">
         <small>Atendimento</small>
@@ -402,8 +467,7 @@ footer a:hover{color:var(--ivory)}
 <section class="about sec" id="sobre">
   <div class="wrap about-grid">
     <div class="about-img reveal">
-      <!-- SUBSTITUIR: foto do ambiente da clínica -->
-      <div class="ph" role="img" aria-label="Espaço reservado para foto do ambiente da clínica"><span class="mono">A</span><small>Ambiente da clínica</small></div>
+      <img src="assets/images/clinica-ambiente.webp" alt="Dra. Valéria Andreatto conversando com uma paciente durante a avaliação na Clínica Andreatto" width="900" height="1600" loading="lazy">
     </div>
     <div>
       <span class="eyebrow reveal">A Clínica</span>
@@ -439,7 +503,7 @@ footer a:hover{color:var(--ivory)}
 
     <div class="t-grid" id="tGrid">
       <article class="t-card reveal" data-cat="facial">
-        <div class="t-media"><div class="ph" role="img" aria-label="Imagem do tratamento com toxina botulínica"><span class="mono">01</span></div></div>
+        <div class="t-media"><img src="assets/video/botox-aplicacao.jpg" alt="Dra. Valéria Andreatto preparando aplicação de toxina botulínica" loading="lazy"><button class="t-play" data-video="assets/video/botox-fim-de-ano.mp4" data-poster="assets/video/botox-fim-de-ano.jpg" data-title="Toxina Botulínica" aria-label="Assistir vídeo: Toxina Botulínica"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>Ver vídeo</button></div>
         <div class="t-body">
           <span class="t-num">01</span>
           <span class="t-cat">Facial</span>
@@ -449,7 +513,7 @@ footer a:hover{color:var(--ivory)}
         </div>
       </article>
       <article class="t-card reveal d1" data-cat="facial">
-        <div class="t-media"><div class="ph" role="img" aria-label="Imagem do tratamento de lábios"><span class="mono">02</span></div></div>
+        <div class="t-media"><img src="assets/images/resultado-labios-2.webp" alt="Antes e depois de tratamento de lábios na Clínica Andreatto" loading="lazy"></div>
         <div class="t-body">
           <span class="t-num">02</span>
           <span class="t-cat">Facial</span>
@@ -509,7 +573,7 @@ footer a:hover{color:var(--ivory)}
         </div>
       </article>
       <article class="t-card reveal d1" data-cat="corporal">
-        <div class="t-media"><div class="ph" role="img" aria-label="Imagem dos tratamentos corporais"><span class="mono">08</span></div></div>
+        <div class="t-media"><img src="assets/images/resultado-corporal-frente.webp" alt="Antes e depois de tratamento corporal na Clínica Andreatto" loading="lazy"><button class="t-play" data-video="assets/video/procedimento-corporal.mp4" data-poster="assets/video/procedimento-corporal.jpg" data-title="Estética Corporal" aria-label="Assistir vídeo: Estética Corporal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>Ver vídeo</button></div>
         <div class="t-body">
           <span class="t-num">08</span>
           <span class="t-cat">Corporal</span>
@@ -520,7 +584,7 @@ footer a:hover{color:var(--ivory)}
         </div>
       </article>
       <article class="t-card reveal d2" data-cat="capilar">
-        <div class="t-media"><div class="ph" role="img" aria-label="Imagem dos tratamentos capilares"><span class="mono">09</span></div></div>
+        <div class="t-media"><img src="assets/images/resultado-capilar.webp" alt="Antes e depois de tratamento capilar na Clínica Andreatto" loading="lazy"><button class="t-play" data-video="assets/video/saude-capilar.mp4" data-poster="assets/video/saude-capilar.jpg" data-title="Saúde Capilar" aria-label="Assistir vídeo: Saúde Capilar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>Ver vídeo</button></div>
         <div class="t-body">
           <span class="t-num">09</span>
           <span class="t-cat">Capilar</span>
@@ -617,7 +681,7 @@ footer a:hover{color:var(--ivory)}
     <div>
       <span class="eyebrow reveal">Quem cuida de você</span>
       <h2 class="reveal d1">Dra. Valéria <em>Andreatto</em></h2>
-      <span class="role reveal d1">Fundadora · Clínica Andreatto</span>
+      <span class="role reveal d1">Fundadora · Harmonização Facial</span>
       <p class="reveal d2">À frente da Clínica Andreatto, a Dra. Valéria conduz cada avaliação com atenção ao que torna cada paciente único. Seu trabalho tem um objetivo simples: que você se reconheça no espelho, só que mais confiante.</p>
       <!-- PREENCHER: formação, registro profissional (conselho e número), especializações e cursos. Não publicar sem confirmação. -->
       <ul class="creds reveal d2">
@@ -628,36 +692,97 @@ footer a:hover{color:var(--ivory)}
       <a href="#" class="btn btn-dark reveal d3 js-wa" data-msg="Olá Dra. Valéria! Quero transformar minha autoestima com você.">Falar com a Dra. Valéria</a>
     </div>
     <div class="doc-photo reveal d1">
-      <!-- SUBSTITUIR: retrato profissional da Dra. Valéria (vertical, mín. 900x1125) -->
-      <div class="ph" role="img" aria-label="Espaço reservado para o retrato da Dra. Valéria Andreatto"><span class="mono">V</span><small>Retrato da Dra. Valéria</small></div>
+      <img src="assets/images/dra-valeria.webp" alt="Retrato da Dra. Valéria Andreatto, fundadora da Clínica Andreatto" width="1000" height="1333" loading="lazy">
     </div>
   </div>
 </section>
 
-<!-- 6. Gallery -->
-<section class="gallery sec" id="clinica">
+<!-- 6a. Reels carousel -->
+<section class="reels sec" id="bastidores">
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <span class="eyebrow reveal">A Clínica por dentro</span>
-        <h2 class="reveal d1">Um espaço pensado para o seu <em>conforto</em>.</h2>
+        <span class="eyebrow reveal">Bastidores</span>
+        <h2 class="reveal d1">O dia a dia da <em>clínica</em>.</h2>
       </div>
-      <p class="lead reveal d2">Acompanhe o dia a dia da clínica, bastidores e conteúdos sobre cuidados no nosso Instagram.</p>
+      <div class="reels-head-r reveal d2">
+        <p class="lead">Procedimentos, cuidados e a rotina da Dra. Valéria, direto do nosso Instagram.</p>
+        <div class="r-nav">
+          <button class="r-btn" data-dir="-1" aria-label="Vídeo anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button class="r-btn" data-dir="1" aria-label="Próximo vídeo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
     </div>
-    <!-- SUBSTITUIR: fotos reais da clínica. Fotos de pacientes somente com autorização por escrito. -->
-    <div class="g-grid">
-      <div class="g-item tall reveal"><div class="ph" role="img" aria-label="Foto da clínica"><span class="mono">A</span></div></div>
-      <div class="g-item wide reveal d1"><div class="ph" role="img" aria-label="Foto da clínica"><span class="mono">A</span></div></div>
-      <div class="g-item reveal d2"><div class="ph" role="img" aria-label="Foto da clínica"><span class="mono">A</span></div></div>
-      <div class="g-item reveal d1"><div class="ph" role="img" aria-label="Foto da clínica"><span class="mono">A</span></div></div>
-      <div class="g-item wide reveal d2"><div class="ph" role="img" aria-label="Foto da clínica"><span class="mono">A</span></div></div>
+  </div>
+  <div class="r-track" id="rTrack" tabindex="0" aria-label="Vídeos da clínica">
+    <button class="reel" data-video="assets/video/clinica-andreatto.mp4" data-poster="assets/video/clinica-andreatto.jpg" data-title="Clínica Andreatto">
+      <video muted loop playsinline preload="none" poster="assets/video/clinica-andreatto.jpg"><source src="assets/video/clinica-andreatto.mp4" type="video/mp4"></video>
+      <span class="r-tag">A Clínica</span><span class="r-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+      <span class="r-cap">Conheça a Clínica Andreatto</span>
+    </button>
+    <button class="reel" data-video="assets/video/botox-fim-de-ano.mp4" data-poster="assets/video/botox-fim-de-ano.jpg" data-title="Toxina Botulínica" data-treat="Toxina Botulínica (Botox)">
+      <video muted loop playsinline preload="none" poster="assets/video/botox-fim-de-ano.jpg"><source src="assets/video/botox-fim-de-ano.mp4" type="video/mp4"></video>
+      <span class="r-tag">Botox</span><span class="r-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+      <span class="r-cap">Botox para as festas de fim de ano</span>
+    </button>
+    <button class="reel" data-video="assets/video/saude-capilar.mp4" data-poster="assets/video/saude-capilar.jpg" data-title="Saúde Capilar" data-treat="Tratamento Capilar">
+      <video muted loop playsinline preload="none" poster="assets/video/saude-capilar.jpg"><source src="assets/video/saude-capilar.mp4" type="video/mp4"></video>
+      <span class="r-tag">Capilar</span><span class="r-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+      <span class="r-cap">Seu cabelo está caindo?</span>
+    </button>
+    <button class="reel" data-video="assets/video/procedimento-corporal.mp4" data-poster="assets/video/procedimento-corporal.jpg" data-title="Estética Corporal" data-treat="Estética Corporal">
+      <video muted loop playsinline preload="none" poster="assets/video/procedimento-corporal.jpg"><source src="assets/video/procedimento-corporal.mp4" type="video/mp4"></video>
+      <span class="r-tag">Corporal</span><span class="r-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+      <span class="r-cap">Procedimento corporal</span>
+    </button>
+    <button class="reel" data-video="assets/video/botox-aplicacao.mp4" data-poster="assets/video/botox-aplicacao.jpg" data-title="Toxina Botulínica" data-treat="Toxina Botulínica (Botox)">
+      <video muted loop playsinline preload="none" poster="assets/video/botox-aplicacao.jpg"><source src="assets/video/botox-aplicacao.mp4" type="video/mp4"></video>
+      <span class="r-tag">Botox</span><span class="r-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+      <span class="r-cap">Bastidores da aplicação</span>
+    </button>
+    <button class="reel" data-video="assets/video/atendemos-no-feriado.mp4" data-poster="assets/video/atendemos-no-feriado.jpg" data-title="Atendimento">
+      <video muted loop playsinline preload="none" poster="assets/video/atendemos-no-feriado.jpg"><source src="assets/video/atendemos-no-feriado.mp4" type="video/mp4"></video>
+      <span class="r-tag">Rotina</span><span class="r-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+      <span class="r-cap">Vocês atendem no feriado?</span>
+    </button>
+  </div>
+  <div class="wrap r-foot reveal">
+    <a class="link-arrow" href="https://www.instagram.com/clinica.andreatto/" target="_blank" rel="noopener">Mais no Instagram @clinica.andreatto</a>
+  </div>
+</section>
+
+<!-- 6b. Results gallery (imagens publicadas pela clínica no Instagram) -->
+<section class="gallery sec" id="resultados">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow reveal">Resultados</span>
+        <h2 class="reveal d1">Antes e depois, com <em>naturalidade</em>.</h2>
+      </div>
+      <p class="lead reveal d2">Casos reais atendidos na Clínica Andreatto. Toque em uma imagem para ampliar.</p>
+    </div>
+    <div class="masonry">
+      <figure class="m-item reveal"><button class="zoom" data-img="assets/images/resultado-labios-2.webp" data-title="Lábios"><img src="assets/images/resultado-labios-2.webp" alt="Antes e depois de tratamento de lábios" loading="lazy" width="1100" height="1100"></button><figcaption>Lábios</figcaption></figure>
+      <figure class="m-item reveal d1"><button class="zoom" data-img="assets/images/resultado-capilar.webp" data-title="Capilar"><img src="assets/images/resultado-capilar.webp" alt="Antes e depois de tratamento capilar" loading="lazy" width="1100" height="1374"></button><figcaption>Capilar</figcaption></figure>
+      <figure class="m-item reveal d2"><button class="zoom" data-img="assets/images/resultado-contorno-facial.webp" data-title="Contorno facial"><img src="assets/images/resultado-contorno-facial.webp" alt="Antes e depois de tratamento de contorno facial" loading="lazy" width="1100" height="961"></button><figcaption>Contorno facial</figcaption></figure>
+      <figure class="m-item reveal"><button class="zoom" data-img="assets/images/resultado-corporal-frente.webp" data-title="Corporal"><img src="assets/images/resultado-corporal-frente.webp" alt="Antes e depois de tratamento corporal, vista frontal" loading="lazy" width="1100" height="1100"></button><figcaption>Corporal, frente</figcaption></figure>
+      <figure class="m-item reveal d1"><button class="zoom" data-img="assets/images/resultado-labios-1.webp" data-title="Lábios"><img src="assets/images/resultado-labios-1.webp" alt="Antes e depois de preenchimento labial" loading="lazy" width="1100" height="637"></button><figcaption>Lábios</figcaption></figure>
+      <figure class="m-item reveal d2"><button class="zoom" data-img="assets/images/resultado-corporal-perfil.webp" data-title="Corporal"><img src="assets/images/resultado-corporal-perfil.webp" alt="Antes e depois de tratamento corporal, vista lateral" loading="lazy" width="1100" height="1100"></button><figcaption>Corporal, perfil</figcaption></figure>
+      <figure class="m-item reveal"><button class="zoom" data-img="assets/images/resultado-pele-pernas.webp" data-title="Pele"><img src="assets/images/resultado-pele-pernas.webp" alt="Antes e depois de tratamento de pele nas pernas" loading="lazy" width="1100" height="858"></button><figcaption>Pele</figcaption></figure>
     </div>
     <div class="g-note reveal">
-      <span>Resultados variam de pessoa para pessoa.</span>
-      <a class="link-arrow" href="https://www.instagram.com/clinica.andreatto/" target="_blank" rel="noopener">@clinica.andreatto</a>
+      <span>Imagens publicadas com autorização das pacientes. Resultados variam de pessoa para pessoa.</span>
+      <a class="link-arrow" href="#agendar">Agendar avaliação</a>
     </div>
   </div>
 </section>
+
+<!-- Lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Visualização" hidden>
+  <button class="lb-close" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="lb-body" id="lbBody"></div>
+  <a href="#agendar" class="btn btn-dark lb-cta" id="lbCta">Agendar avaliação</a>
+</div>
 
 <!-- 7. Testimonials: omitido até a clínica enviar depoimentos reais autorizados -->
 
@@ -756,7 +881,7 @@ footer a:hover{color:var(--ivory)}
   <div class="wrap">
     <div class="f-grid">
       <div>
-        <a href="#top" class="logo"><b>Andreatto</b><span>Estética Avançada</span></a>
+        <a href="#top" class="logo"><img src="assets/logo/logo-andreatto.png" alt="Clínica Andreatto, Acupuntura e Estética" width="600" height="238" loading="lazy"></a>
         <p class="f-tag">Transformando autoestima e bem-estar. Facial, corporal e capilar em Rio Branco, AC.</p>
       </div>
       <div>
@@ -882,6 +1007,67 @@ footer a:hover{color:var(--ivory)}
     var out = document.getElementById('waOut');
     out.href = url; out.hidden = false;
   });
+
+  // lightbox (video / image)
+  var lb = document.getElementById('lb'), lbBody = document.getElementById('lbBody'), lbCta = document.getElementById('lbCta'), lastFocus = null;
+  function selectTreat(v){
+    if (!v) return;
+    for (var i = 0; i < sel.options.length; i++) { if (sel.options[i].text === v) { sel.selectedIndex = i; break; } }
+  }
+  function openLb(html, treat){
+    lastFocus = document.activeElement;
+    lbBody.innerHTML = html;
+    lbCta.setAttribute('data-lbtreat', treat || '');
+    lb.hidden = false; document.body.style.overflow = 'hidden';
+    lb.querySelector('.lb-close').focus();
+    var v = lbBody.querySelector('video'); if (v) { var pr = v.play(); if (pr && pr.catch) pr.catch(function(){}); }
+  }
+  function closeLb(){
+    var v = lbBody.querySelector('video'); if (v) v.pause();
+    lbBody.innerHTML = ''; lb.hidden = true; document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  }
+  lb.querySelector('.lb-close').addEventListener('click', closeLb);
+  lb.addEventListener('click', function(e){ if (e.target === lb) closeLb(); });
+  lbCta.addEventListener('click', function(){ selectTreat(lbCta.getAttribute('data-lbtreat')); closeLb(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !lb.hidden) closeLb(); });
+  function videoHtml(el){
+    return '<video controls playsinline autoplay poster="' + el.getAttribute('data-poster') + '" aria-label="' + el.getAttribute('data-title') + '"><source src="' + el.getAttribute('data-video') + '" type="video/mp4"></video>';
+  }
+  document.querySelectorAll('.reel, .t-play').forEach(function(el){
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      var treat = el.getAttribute('data-treat');
+      if (!treat) { var card = el.closest('.t-card'); var a = card && card.querySelector('[data-treat]'); treat = a ? a.getAttribute('data-treat') : ''; }
+      openLb(videoHtml(el), treat);
+    });
+  });
+  document.querySelectorAll('.zoom').forEach(function(el){
+    el.addEventListener('click', function(){
+      var img = el.querySelector('img');
+      openLb('<img src="' + el.getAttribute('data-img') + '" alt="' + img.alt + '">', '');
+    });
+  });
+
+  // reels: muted preview on hover (pointer devices), arrows scroll the track
+  var canHover = window.matchMedia('(hover:hover)').matches;
+  document.querySelectorAll('.reel').forEach(function(r){
+    var v = r.querySelector('video');
+    if (!canHover) return;
+    r.addEventListener('mouseenter', function(){ var p = v.play(); if (p && p.catch) p.catch(function(){}); r.classList.add('playing'); });
+    r.addEventListener('mouseleave', function(){ v.pause(); r.classList.remove('playing'); });
+  });
+  var track = document.getElementById('rTrack');
+  document.querySelectorAll('.r-btn').forEach(function(b){
+    b.addEventListener('click', function(){
+      var step = track.querySelector('.reel').getBoundingClientRect().width + 20;
+      track.scrollBy({left: step * Number(b.getAttribute('data-dir')), behavior: 'smooth'});
+    });
+  });
+
+  // hero video respects reduced motion
+  var hv = document.querySelector('.hero-video');
+  if (hv && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { hv.removeAttribute('autoplay'); hv.pause(); }
 
   // hide expired offers
   var now = Date.now();
